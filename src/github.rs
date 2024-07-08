@@ -103,7 +103,7 @@ pub struct User {
 }
 
 #[allow(unused)]
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct GithubHeader {
     /// The unique identifier of the webhook
     pub x_github_hook_id: String,

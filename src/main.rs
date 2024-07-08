@@ -91,7 +91,7 @@ async fn setup_tcp() -> TcpListener {
 
     let addr = format!("127.0.0.1:{port}");
 
-    TcpListener::bind(&addr).await.expect("cannot bind to {addr}")
+    TcpListener::bind(&addr).await.expect(&format!("cannot bind to {addr}"))
 }
 
 fn setup_sqlite_pool() -> Pool {
@@ -112,6 +112,7 @@ async fn handle(req: Request, state: Arc<State>) -> Result {
     }
 
     let gh_header = GithubHeader::from_request_parts(&parts);
+    println!("HEADER: {gh_header:?}");
 
     match &*gh_header.x_github_event {
         "ping" => Ok(Response::new(Either::Left(Full::default()))),
